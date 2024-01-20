@@ -6,18 +6,16 @@ import { redirect } from "next/navigation";
 export const createNewUser = async () => {
   //check for logged in user
   const user = await currentUser();
-  if (!user) {
-    return;
-  }
   //check if user exists in db
   const match = await prisma.user.findUnique({
     where: {
       clerkId: user?.id as string,
     },
   });
+  console.log(match);
+
   // if user doesn't create a new user relation
   if (!match) {
-    console.log(match);
     await prisma.user.create({
       data: {
         clerkId: user?.id as string,

@@ -2,9 +2,10 @@ import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default async function Home() {
-const {userId} = await auth();
-
-const href = userId ? '/journal': '/new-user';
+  //auth with clerk
+  const { userId } = await auth();
+  //conditionallly render link
+  const href = userId ? "/journal" : "/new-user";
   return (
     <div className="w-screen h-screen bg-slate-900 flex justify-center items-center text-white">
       <div className="w-full max-w-[600px] mx-auto">
