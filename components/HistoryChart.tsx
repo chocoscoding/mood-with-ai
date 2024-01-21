@@ -54,7 +54,7 @@ const HistoryChart = ({ data }: { data: Analysis[] }) => {
         {/* Rendering the x-axis */}
         <XAxis dataKey="updatedAt" />
         {/* Rendering the tooltip with the custom content */}
-        <Tooltip content={<CustomTooltip />} />
+        {data.length < 1 ? <Tooltip content={<CustomTooltip />} /> : <></>}
       </LineChart>
     </ResponsiveContainer>
   );
