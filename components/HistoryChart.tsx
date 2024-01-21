@@ -35,6 +35,9 @@ const CustomTooltip = ({ payload, label, active }: any) => {
 
 // HistoryChart component to render the line chart using the analysis data
 const HistoryChart = ({ data }: { data: Analysis[] }) => {
+  console.log(data);
+  const dataa: any[] | undefined = [];
+
   return (
     <ResponsiveContainer
       width="100%"
@@ -42,7 +45,7 @@ const HistoryChart = ({ data }: { data: Analysis[] }) => {
       <LineChart
         width={300}
         height={100}
-        data={data}>
+        data={dataa}>
         {/* Rendering the line chart */}
         <Line
           type="monotone"
