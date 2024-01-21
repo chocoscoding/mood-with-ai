@@ -15,7 +15,7 @@ const CustomTooltip = ({ payload, label, active }: any) => {
   });
 
   if (active) {
-    const analysis = payload[0].payload;
+    const analysis = payload[0]?.payload || [];
     return (
       <div className="p-8 custom-tooltip bg-white/5 shadow-md border border-black/10 rounded-lg backdrop-blur-md relative">
         {/* Displaying a small dot with the analysis color */}
@@ -35,9 +35,6 @@ const CustomTooltip = ({ payload, label, active }: any) => {
 
 // HistoryChart component to render the line chart using the analysis data
 const HistoryChart = ({ data }: { data: Analysis[] }) => {
-  console.log(data);
-  const dataa: any[] | undefined = [];
-
   return (
     <ResponsiveContainer
       width="100%"
@@ -45,7 +42,7 @@ const HistoryChart = ({ data }: { data: Analysis[] }) => {
       <LineChart
         width={300}
         height={100}
-        data={dataa}>
+        data={data}>
         {/* Rendering the line chart */}
         <Line
           type="monotone"
@@ -57,7 +54,7 @@ const HistoryChart = ({ data }: { data: Analysis[] }) => {
         {/* Rendering the x-axis */}
         <XAxis dataKey="updatedAt" />
         {/* Rendering the tooltip with the custom content */}
-        {data.length < 1 ? <Tooltip content={<CustomTooltip />} /> : <></>}
+        <Tooltip content={<CustomTooltip />} />
       </LineChart>
     </ResponsiveContainer>
   );
