@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs";
 import { User } from "@clerk/nextjs/dist/types/server";
 import { redirect } from "next/navigation";
 
-export const createNewUser = async () => {
+const createNewUser = async () => {
   //check for logged in user
   const user = await currentUser();
   //check if user exists in db
@@ -12,7 +12,6 @@ export const createNewUser = async () => {
       clerkId: user?.id as string,
     },
   });
-  console.log(match);
 
   // if user doesn't create a new user relation
   if (!match) {
