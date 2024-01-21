@@ -4,7 +4,6 @@ import { Analysis, JournalEntry } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useAutosave } from "react-autosave";
-import Spinner from "./Spinner";
 import LoadingState from "./LoadingState";
 type AnalysisType = Pick<Analysis, "mood" | "color" | "negative" | "summary" | "subject">;
 
@@ -29,7 +28,8 @@ const Entry = ({ entry }: { entry: CombinedType }) => {
     data: value,
     saveOnUnmount: false,
     onSave: async (_value) => {
-      if (rerendercount.current <= 1) return;
+      console.log(_value);
+      // if (rerendercount.current < 1) return;
       setProcessState("loading");
       const { Analysis } = await updateEntry({ content: _value, id: entry.id });
       setAnalysisState(Analysis);
