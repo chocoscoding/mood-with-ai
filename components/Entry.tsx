@@ -28,8 +28,7 @@ const Entry = ({ entry }: { entry: CombinedType }) => {
     data: value,
     saveOnUnmount: false,
     onSave: async (_value) => {
-      console.log(_value);
-      // if (rerendercount.current < 1) return;
+      if (process.env.NODE_ENV === "development" && rerendercount.current <= 1) return;
       setProcessState("loading");
       const { Analysis } = await updateEntry({ content: _value, id: entry.id });
       setAnalysisState(Analysis);
